@@ -1,0 +1,826 @@
+@charset "utf-8";
+/*-------------------------------------------reset------------------------------------------------*/
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td {
+	margin:0;
+	padding:0; 
+}
+a {text-decoration:none; color:#666;}
+a:hover {text-decoration:underline;}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+fieldset,
+img {
+	border:0;
+}
+/*
+	TODO think about hanlding inheritence differently, maybe letting IE6 fail a bit...
+*/
+address,
+caption,
+cite,
+code,
+dfn,
+i,
+th,
+var {
+	font-style:normal;
+	font-weight:normal;
+}
+strong {font-weight:normal;}
+em {font-style:normal;}
+/*
+	TODO Figure out where this list-style rule is best set. Hedger has a request to investigate.
+*/
+li {
+	list-style:none;
+}
+
+caption,
+th {
+	text-align:left;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size:100%;
+	font-weight:normal;
+}
+q:before,
+q:after {
+	content:'';
+}
+abbr,
+acronym {
+	border:0;
+	font-variant:normal;
+}
+input,
+textarea,
+select {
+	font-family:inherit;
+	font-size:inherit;
+	font-weight:inherit;
+}
+/*to enable resizing for IE*/
+input,
+textarea,
+select {
+	*font-size:100%;
+}
+/*because legend doesn't inherit in IE */
+legend {
+	color:#000;
+}
+/*-------------------------------------base.css-------------------------------------------*/
+/*文字排版*/
+.fa{font-size:14px;}
+
+.f6{font-size:6px;}
+.f7{font-size:7px;}
+.f8{font-size:8px;}
+.f10{font-size:10px;}
+.f12{font-size:12px;}
+.f13{font-size:13px;}
+.f14{font-size:14px;}
+.f15{font-size:15px;}
+.f16{font-size:16px;}
+.f18{font-size:18px}
+.f20{font-size:20px}
+.f22{ font-size:22px;}
+.f24{ font-size:24px;}
+.f26{ font-size:26px;}
+.f28{ font-size:28px;}
+.f30{font-size:30px}
+.f36{font-size:36px}
+.f40{ font-size:40px;}
+.f48{ font-size:48px;}
+.f50{ font-size:50px;}
+.f60{ font-size:50px;}
+.f70{ font-size:50px;}
+.f80{ font-size:50px;}
+.f90{ font-size:50px;}
+.f100{ font-size:50px;}
+.f110{ font-size:50px;}
+.f120{font-size:120px;}
+
+.fb{font-weight:bold;}
+.fn{font-weight:normal;}
+.ft{font-weight:100;}
+.t2{text-indent:2em;}
+.yahei{font-family:'\5fae\8f6f\96c5\9ed1';}
+/*定位*/
+.tl{text-align:left;}
+.tc{text-align:center;}
+.tr{text-align:right;}
+.bc{margin-left:auto;margin-right:auto;}
+/*
+	fl包含display inline  是为了解决ie6双边距  
+	如果.fl用在ul(可能还有别的标签)标签上会出现类似text-indent的bug  
+	可以通过给li标签浮动修正 或者覆盖掉此处的display属性
+*/
+.fl{float:left;display:inline;}
+.fr{float:right;display:inline;}
+.cb{clear:both;}
+.cl{clear:left;}
+.cr{clear:right;}
+/*
+	不加block在标准浏览器中无法清除ie6、7可以但下面多一像素
+	height:0px;时ie6中无法清除(给浮动块margin可以看出)
+*/
+.clear{clear:both;overflow:hidden;display:block;height:0px;_height:1px; font:300 1px/1px arial;}
+/*
+	clearfix清除浮动后在ie6、7中会忽略浮动框的margin-bottom
+	并且偶尔会由于layout被激活而出现一些bug  如多出间隙等
+	此时可以使用.clear来避免这种bug 或者两者结合使用
+*/
+.clearfix:after{content:'.';display:block;height:0;clear:both;visibility:hidden;}
+.clearfix{*zoom:1;}
+.clearfix .clear{_height:0px;}
+/*
+	一般情况下使用clearfix即可
+	出现忽略margin等情况是clearfix与clear一起使用
+	单独使用clear一般可以清除浮动，但ie6会多一个像素
+*/
+.pr{position:relative;}
+.pa{position:absolute;}
+.zoom{zoom:1;}
+.hidden{visibility:hidden;}
+.ofh{overflow:hidden}
+/*
+	block 如img标签有时需要此class来消除空行
+*/
+.block{display:block;}
+.inline_block{display:inline-block; *display:inline; *zoom:1;}
+.none{display:none;}
+.ib{display:inline-block;}
+
+/* 鼠标图形 */
+.hand{ cursor:pointer;}
+/* 对其方式 */
+.vm{vertical-align:middle;}
+
+/*
+	常用的变量css可以在项目css中写出
+	如：.w10{width:10px;}
+		.m10{margin:10px;}
+		.p10{padding:10px;}
+	可在项目中给出语义化class名
+	如：.wNormal{width:100px;}
+		.wPage{width:950px;}
+	等..
+*/
+/*
+	其它需要的在项目css中写出
+	height等使用较少，这里不给出
+	边距提供0 5 10 15 20
+	宽度提供 10 20 30 40 50 60 70 80 90 100 150 200 250 300 350 400 450 500 600 700 800 900 1000 100%
+	p放在前面 pl,pr,pt,pb等放在后面 便于覆盖
+*/
+/*z-index*/
+.zi10 {z-index:10;}
+.zi9 {z-index:9;}
+.zi8 {z-index:8;}
+.zi7 {z-index:7;}
+.zi6 {z-index:6;}
+.zi5 {z-index:5;}
+.zi4 {z-index:4;}
+.zi3 {z-index:3;}
+.zi2 {z-index:2;}
+/*width*/
+.w10{width:10px;}
+.w20{width:20px;}
+.w25{width:25px;}
+.w30{width:30px;}
+.w40{width:40px;}
+.w50{width:50px;}
+.w60{ width:60px;}
+.w70{ width:70px;}
+.w80{ width:80px;}
+.w90{ width:90px;}
+.w100{width:100px;}
+.w110{width:110px;}
+.w120{width:120px;}
+.w130{width:130px;}
+.w150{width:150px;}
+.w160{width:160px;}
+.w170{width:170px;}
+.w180{width:180px;}
+.w199{width:199px;}
+.w200{width:200px;}
+.w210{width:210px;}
+.w220{width:220px;}
+.w230{width:230px;}
+.w235{width:235px;}
+.w250{width:250px;}
+.w256{width:256px;}
+.w260{width:260px;}
+.w280{width:280px;}
+.w290{width:290px;}
+.w300{width:300px;}
+.w350{width:350px;}
+.w380{width:380px;}
+.w400{width:400px;}
+.w430{width:430px;}
+.w450{width:450px;}
+.w480{width:480px;}
+.w500{width:500px;}
+.w600{width:600px;}
+.w700{width:700px;}
+.w705{width:705px;}
+.w727{width:727px;}
+.w730{width:730px;}
+.w749{width:749px;}
+.w755{width:755px;}
+.w788{width:788px;}
+.w800{width:800px;}
+.w892{width:892px;}
+.w900{width:900px;}
+.w914{width:914px;}
+.w925{width:925px;}
+.w964{width:964px;}
+.w1000{width:1000px;}
+.w1180{width:1180px;}
+.wmax{width:100%;}
+
+/*padding*/
+.p5{padding:5px;}
+.p10{padding:10px;}
+.p15{padding:15px;}
+.p20{padding:20px;}
+.p30{padding:30px;}
+.p40{padding:40px;}
+.pl0{padding-left:0;}
+.pl5{padding-left:5px;}
+.pl10{padding-left:10px;}
+.pl12{padding-left:12px;}
+.pl15{padding-left:15px;}
+.pl20{padding-left:20px;}
+.pl30{padding-left:30px;}
+.pl40{padding-left:40px;}
+.pl45{padding-left:45px;}
+.pl50{padding-left:50px;}
+.pl60{padding-left:60px;}
+.pl146{padding-left:146px;}
+.pl192{padding-left:192px;}
+.pr0{padding-right:0;}
+.pr5{padding-right:5px;}
+.pr10{padding-right:10px;}
+.pr12{padding-right:12px;}
+.pr15{padding-right:15px;}
+.pr20{padding-right:20px;}
+.pr25{padding-right:25px;}
+.pr30{padding-right:30px;}
+.pr40{padding-right:40px;}
+.pr50{padding-right:50px;}
+.pt0{padding-top:0;}
+.pt5{padding-top:5px;}
+.pt10{padding-top:10px;}
+.pt15{padding-top:15px;}
+.pt20{padding-top:20px;}
+.pt25{padding-top:25px;}
+.pt30{padding-top:30px;}
+.pt35{padding-top:35px;}
+.pt40{padding-top:40px;}
+.pt50{padding-top:50px;}
+.pt55{padding-top:55px;}
+.pt60{padding-top:60px;}
+.pt70{padding-top:70px;}
+.pt80{padding-top:80px;}
+.pt140{padding-top:140px;}
+.pb0{padding-bottom:0;}
+.pb5{padding-bottom:5px;}
+.pb10{padding-bottom:10px;}
+.pb15{padding-bottom:15px;}
+.pb20{padding-bottom:20px;}
+.pb25{padding-bottom:25px;}
+.pb30{padding-bottom:30px;}
+.pb35{padding-bottom:35px;}
+.pb40{padding-bottom:40px;}
+.pb45{padding-bottom:45px;}
+.pb50{padding-bottom:50px;}
+.pb60{padding-bottom:60px;}
+.pb70{padding-bottom:70px;}
+.pb85{padding-bottom:85px;}
+.pb90{padding-bottom:90px;}
+.pb100{padding-bottom:100px;}
+.pb160{padding-bottom:160px;}
+.ptb5{ padding-top:5px; padding-bottom:5px;}
+.plr10{ padding-left:10px; padding-right:10px;}
+.plr12{ padding-left:12px; padding-right:12px;}
+.plr15{ padding-left:15px; padding-right:15px;}
+.plr20{ padding-left:20px; padding-right:20px;}
+.plr25{ padding-left:25px; padding-right:25px;}
+.plr30{ padding-left:30px; padding-right:30px;}
+.plr35{ padding-left:35px; padding-right:35px;}
+.plr45{ padding-left:45px; padding-right:45px;}
+.plr50{ padding-left:50px; padding-right:50px;}
+.pl300{padding-left:300px;}
+
+/*margin*/
+.m5{margin:5px;}
+.m10{margin:10px;}
+.m15{margin:15px;}
+.m20{margin:20px;}
+
+.ml0{margin-left:0;}
+.ml3{margin-left:3px;}
+.ml5{margin-left:5px;}
+.ml6{margin-left:6px;}
+.ml7{margin-left:7px;}
+.ml10{margin-left:10px;}
+.ml15{margin-left:15px;}
+.ml16{margin-left:16px;}
+.ml20{margin-left:20px;}
+.ml21{margin-left:21px;}
+.ml22{margin-left:22px;}
+.ml30{margin-left:30px;}
+.ml36{margin-left:36px;}
+.ml40{margin-left:40px;}
+.ml42{margin-left:42px;}
+.ml45{margin-left:45px;}
+.ml50{margin-left:50px;}
+.ml60{margin-left:60px;}
+.ml70{margin-left:70px;}
+.ml80{margin-left:80px;}
+.ml110{margin-left:110px;}
+.ml120{margin-left:120px;}
+.ml180{margin-left:180px;}
+
+.mr0{margin-right:0;}
+.mr5{margin-right:5px;}
+.mr9{margin-right:9px;}
+.mr10{margin-right:10px;}
+.mr15{margin-right:15px;}
+.mr20{margin-right:20px;}
+.mr25{margin-right:25px;}
+.mr30{margin-right:30px;}
+.mr35{margin-right:35px;}
+.mr37{margin-right:37px;}
+.mr40{margin-right:40px;}
+.mr50{margin-right:50px;}
+.mr70{margin-right:70px;}
+.mr80{margin-right:80px;}
+.mr175{margin-right:175px;}
+.mr180{margin-right:180px;}
+.mr150{margin-right:150px;}
+
+.mt0{margin-top:0;}
+.mt1{margin-top:1px;}
+.mt2{margin-top:2px;}
+.mt3{margin-top:3px;}
+.mt4{margin-top:4px;}
+.mt5{margin-top:5px;}
+.mt6{ margin-top:6px;}
+.mt7{ margin-top:7px;}
+.mt8{ margin-top:8px;}
+.mt9{ margin-top:9px;}
+.mt10{margin-top:10px;}
+.mt11{margin-top:11px;}
+.mt12{ margin-top:12px;}
+.mt13{ margin-top:13px;}
+.mt15{margin-top:15px;}
+.mt17{ margin-top:17px;}
+.mt18{margin-top:18px;}
+.mt20{margin-top:20px;}
+.mt22{ margin-top:22px;}
+.mt23{ margin-top:23px;}
+.mt25{margin-top:25px;}
+.mt28{margin-top:28px;}
+.mt30{margin-top:30px;}
+.mt32{ margin-top:32px;}
+.mt35{ margin-top:35px;}
+.mt40{ margin-top:40px;}
+.mt45{ margin-top:45px;}
+.mt50{ margin-top:50px;}
+.mt60{ margin-top:60px;}
+.mt70{ margin-top:70px;}
+.mt95{ margin-top:95px;}
+.mt140{margin-top:140px;}
+
+.mb0{margin-bottom:0;}
+.mb5{margin-bottom:5px;}
+.mb10{margin-bottom:10px;}
+.mb15{margin-bottom:15px;}
+.mb20{margin-bottom:20px;}
+.mb40{margin-bottom:40px;}
+.mb50{margin-bottom:50px;}
+.mb60{margin-bottom:60px;}
+.mb70{ margin-bottom:70px;}
+.mb80{ margin-bottom:80px;}
+.mb90{ margin-bottom:90px;}
+
+/* 行高 */
+.lh_05{line-height:0.5;}
+.lh_06{line-height:0.6;}
+.lh_07{line-height:0.7;}
+.lh_12{line-height:1.2;}
+.lh_14{line-height:1.4;}
+.lh_16 {line-height:1.6;}
+.lh_18{ line-height:1.8;}
+.lh_2{ line-height:2;}
+.lh_22{ line-height:2.2;}
+.lh28{line-height:28px;}
+.lh30{line-height:30px;}
+.lh35{line-height:35px;}
+.lh38{line-height:38px;}
+.lh50{line-height:50px;}
+
+/*--- 图标字体 ---*/
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon_cedu.eot?i5qeew');
+  src:  url('../fonts/icomoon_cedu.eot?i5qeew#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon_cedu.ttf?i5qeew') format('truetype'),
+    url('../fonts/icomoon_cedu.woff?i5qeew') format('woff'),
+    url('../fonts/icomoon_cedu.svg?i5qeew#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="cedu-"], [class*=" cedu-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.cedu-navi-home:before {
+  content: "\e900";
+}
+.cedu-navi-sy-config:before {
+  content: "\e901";
+}
+.cedu-navi-settings:before {
+  content: "\e902";
+}
+.cedu-navi-training:before {
+  content: "\e903";
+}
+.cedu-navi-user:before {
+  content: "\e904";
+}
+.cedu-navi-achv:before {
+  content: "\e905";
+}
+.cedu-navi-public-sy:before {
+  content: "\e906";
+}
+.cedu-navi-finance:before {
+  content: "\e907";
+}
+.cedu-navi-complete-crs:before {
+  content: "\e908";
+}
+.cedu-navi-chart:before {
+  content: "\e909";
+}
+.cedu-navi-supervise:before {
+  content: "\e90a";
+}
+.cedu-navi-message:before {
+  content: "\e90b";
+}
+.cedu-navi-mail:before {
+  content: "\e90c";
+}
+.cedu-navi-crs-rsrc:before {
+  content: "\e90d";
+}
+.cedu-navi-tch-work:before {
+  content: "\e90e";
+}
+.cedu-navi-collapse:before {
+  content: "\e91f";
+}
+.cedu-navi-extend:before {
+  content: "\e920";
+}
+.cedu-search:before {
+  content: "\e921";
+}
+.cedu-delete:before {
+  content: "\e922";
+}
+.cedu-add:before {
+  content: "\e923";
+}
+.cedu-import:before {
+  content: "\e924";
+}
+.cedu-export:before {
+  content: "\e925";
+}
+.cedu-back:before {
+  content: "\e926";
+}
+.cedu-edit:before {
+  content: "\e927";
+}
+.cedu-time:before {
+  content: "\e928";
+}
+.cedu-upload:before {
+  content: "\e929";
+}
+.cedu-download:before {
+  content: "\e92a";
+}
+.cedu-link:before {
+  content: "\e92b";
+}
+.cedu-settings:before {
+  content: "\e92c";
+}
+.cedu-folder:before {
+  content: "\e92d";
+}
+.cedu-print:before {
+  content: "\e92e";
+}
+.cedu-show:before {
+  content: "\e92f";
+}
+.cedu-hide:before {
+  content: "\e930";
+}
+.cedu-save:before {
+  content: "\e931";
+}
+.cedu-favorite:before {
+  content: "\e932";
+}
+.cedu-info:before {
+  content: "\e933";
+}
+.cedu-enabled:before {
+  content: "\e934";
+}
+.cedu-disable:before {
+  content: "\e935";
+}
+.cedu-adjust:before {
+  content: "\e936";
+}
+.cedu-forbidden:before {
+  content: "\e937";
+}
+.cedu-end:before {
+  content: "\e938";
+}
+.cedu-copy:before {
+  content: "\e939";
+}
+.cedu-cancel:before {
+  content: "\e93a";
+}
+.cedu-complete-crs:before {
+  content: "\e93b";
+}
+.cedu-exam-form:before {
+  content: "\e93c";
+}
+.cedu-tree:before {
+  content: "\e93d";
+}
+.cedu-arrange:before {
+  content: "\e93e";
+}
+.cedu-success:before {
+  content: "\e93f";
+}
+.cedu-fail:before {
+  content: "\e940";
+}
+.cedu-caution:before {
+  content: "\e941";
+}
+.cedu-plan:before {
+  content: "\e942";
+}
+.cedu-crs:before {
+  content: "\e943";
+}
+.cedu-crs-required:before {
+  content: "\e944";
+}
+.cedu-crs-elective:before {
+  content: "\e945";
+}
+.cedu-progress:before {
+  content: "\e946";
+}
+.cedu-file:before {
+  content: "\e947";
+}
+.cedu-file-word:before {
+  content: "\e948";
+}
+.cedu-file-excel:before {
+  content: "\e949";
+}
+.cedu-file-ppt:before {
+  content: "\e94a";
+}
+.cedu-file-pdf:before {
+  content: "\e94b";
+}
+.cedu-file-text:before {
+  content: "\e94c";
+}
+.cedu-file-code:before {
+  content: "\e94d";
+}
+.cedu-file-archive:before {
+  content: "\e94e";
+}
+.cedu-file-audio:before {
+  content: "\e94f";
+}
+.cedu-file-video:before {
+  content: "\e950";
+}
+.cedu-audio:before {
+  content: "\e951";
+}
+.cedu-attachment:before {
+  content: "\e952";
+}
+.cedu-video:before {
+  content: "\e953";
+}
+.cedu-exam:before {
+  content: "\e954";
+}
+.cedu-activity:before {
+  content: "\e955";
+}
+.cedu-study:before {
+  content: "\e956";
+}
+.cedu-user:before {
+  content: "\e957";
+}
+.cedu-lock:before {
+  content: "\e958";
+}
+.cedu-captcha:before {
+  content: "\e959";
+}
+.cedu-file-empty:before {
+  content: "\e95a";
+}
+.cedu-countdown:before {
+  content: "\e95b";
+}
+
+
+.cedu-proposition-homework:before {
+  content: "\f001";
+}
+.cedu-self-proposition-homework:before {
+  content: "\f002";
+}
+.cedu-share-discussion:before {
+  content: "\f003";
+}
+.cedu-wiki:before {
+  content: "\f004";
+}
+.cedu-grinding-course:before {
+  content: "\f005";
+}
+.cedu-video-interlocution:before {
+  content: "\f006";
+}
+.cedu-debate:before {
+  content: "\f007";
+}
+.cedu-questionnaire:before {
+  content: "\f008";
+}
+.cedu-discussion:before {
+  content: "\f009";
+}
+.cedu-activities:before {    /*cedu-activity*/
+  content: "\f00a";
+}
+.cedu-online-exam:before {
+  content: "\f00b";
+}
+.cedu-groupwiki:before {
+  content: "\f00c";
+}
+.cedu-groupdiscussion-share:before {
+  content: "\f00d";
+}
+.cedu-group-discussion:before {
+  content: "\f00e";
+}
+.cedu-Sofa:before {
+  content: "\f00f";
+}
+.cedu-FAQ2:before {
+  content: "\f010";
+}
+.cedu-review-history:before {
+  content: "\f011";
+}
+.cedu-left-right-structures:before {
+  content: "\f012";
+}
+.cedu-up-down-structures:before {
+  content: "\f013";
+}
+.cedu-pop-up:before {
+  content: "\f014";
+}
+.cedu-Courseware:before {
+  content: "\f015";
+}
+.cedu-Return:before {
+  content: "\f016";
+}
+.cedu-add-child:before {
+  content: "\f017";
+}
+.cedu-proposition-homework2:before {
+  content: "\f018";
+}
+.cedu-QnA:before {
+  content: "\f019";
+}
+.cedu-FAQ:before {
+  content: "\f020";
+}
+.cedu-unread:before {
+  content: "\f021";
+}
+.cedu-reaad:before {
+  content: "\f022";
+}
+.cedu-web:before {
+  content: "\f023";
+}
+.cedu-notes:before {
+  content: "\f024";
+}
+
+.cedu-hlsc-Iclose:before {
+  content: "\e91c";
+}
+.cedu-hlsc-close:before {
+  content: "\e91e";
+}
+.cedu-hlsc-Dtpicker:before {
+  content: "\e95c";
+}
+.cedu-hlsc-must:before {
+  content: "\e91b";
+}
+.cedu-hlsc-refresh:before {
+  content: "\e95d";
+}
+.cedu-hlsc-smile:before {
+  content: "\e919";
+}
+.cedu-hlsc-back:before {
+  content: "\e91a";
+}
